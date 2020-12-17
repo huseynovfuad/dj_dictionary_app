@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'words.css' %}">
+    <link rel="stylesheet" href="{% static 'message.css' %}">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="error-message">
+                                     {{error|escape}}
+                                </div><br>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="error-message">
+                                {{error|escape}}
+                            </div><br>
+                        {% endfor %}
+        {% endif %}
+        <div class="header">
+            <h2>REGISTRATION</h2>
+        </div>
+        <form class="form-control" method="POST">
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="">{{ form.username.label }}:</label>
+                {{form.username}}
+            </div>
+            <div class="form-group">
+                <label for="">{{ form.password1.label }}:</label>
+                {{ form.password1 }}
+            </div>
+            <div class="form-group">
+                <label for="">{{ form.password2.label }}:</label>
+                {{ form.password2 }}
+            </div>
+        <button type="submit">Register</button>
+        <a id="formBTN" href="{% url 'login' %}">Login</a>
+        </form>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+</body>
+</html>
