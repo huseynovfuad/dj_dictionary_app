@@ -13,7 +13,7 @@ from dictapp.models import WordTranslate,Word
 class Command(BaseCommand):
     def handle(self, *args, **options):
         english_words = Path(
-            "words/english.txt"
+            "words/3k-english.txt"
         ).open()
         for word in english_words.readlines():
             with suppress(IntegrityError):

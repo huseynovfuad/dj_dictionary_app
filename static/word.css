@@ -85,7 +85,21 @@ body {
 	width: 100%;
     cursor: pointer;
 }
-
+#resetbtn{
+	text-align: center;
+	text-decoration: none;
+	background-color: #27ae60;
+	border: 2px solid #2f3640;
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	margin-top: 20px;
+	width: 100%;
+    cursor: pointer;
+}
 #formBTN{
 	background: #2980b9;
 }

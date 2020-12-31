@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'words.css' %}">
+    <link rel="stylesheet" href="{% static 'word.css' %}">
     <link rel="stylesheet" href="{% static 'message.css' %}">
     <title>Document</title>
 </head>
@@ -21,25 +21,28 @@
                 </div>
         {% endif %}
         <div class="header">
-            <h2>Type Translate and Check</h2>
+            <h2>Tərcüməni yaz və yoxla</h2>
         </div>
         {% if not completed_message %}
         <form class="form-control" method="POST">
+            <label><b>Bilinən sözlər:       {{ known_count }} / {{ word_count }}</b></label>
         {% csrf_token %}
             <div class="form-group">
-                <label for="">Your Word:</label>
+                <label for="">Söz:</label>
                 <input type="text" value="{{ translate.source.word|upper }}" disabled name="source">
                 <input type="hidden" value="{{ translate.source.word }}" name="hidden-source">
             </div>
             <div class="form-group">
-                <label for="">Your Answer:</label>
+                <label for="">Cavabın:</label>
                 <input type="text" name="target" required>
             </div>
-        <button type="submit">Check</button>
-        <a id='passbtn' href="{% url 'home' %}">Pass</a>
+        <button type="submit">Yoxla</button>
+        <a id='passbtn' href="{% url 'home' %}">Keç</a>
+        <a id='resetbtn' href="{% url 'reset' %}">Sıfırla</a>
         </form>
         {% else %}
             <h2 style="text-align: center">{{ completed_message }}</h2>
+            <a id='passbtn' style="text-align: center" href="{% url 'reset' %}">Sıfırla</a>
         {% endif %}
     </div>
 
